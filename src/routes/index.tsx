@@ -1,24 +1,58 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/skyfit/Header";
+import { Hero } from "@/components/skyfit/Hero";
+import {
+  Differentials,
+  Experience,
+  FinalCta,
+  Footer,
+  FullBleed,
+  Gallery,
+  Instagram,
+  Location,
+  Modalities,
+  Numbers,
+  SocialProof,
+  Story,
+} from "@/components/skyfit/Sections";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "SKYFIT Varginha — Academia 2.800+ m² em Varginha MG";
+const description =
+  "Academia SKYFIT Varginha: 2.800+ m², 11+ modalidades, climatização, estacionamento incluso e aberto até 23:00. Av. Princesa do Sul, 393.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="bg-[#050505]">
+      <Header />
+      <main>
+        <Hero />
+        <Numbers />
+        <FullBleed />
+        <Story />
+        <Modalities />
+        <Gallery />
+        <Differentials />
+        <Experience />
+        <SocialProof />
+        <Instagram />
+        <Location />
+        <FinalCta />
+      </main>
+      <Footer />
     </div>
   );
 }
